@@ -28,9 +28,9 @@
 <br>
 <table style="width:80%" border="solid">
     <tr>
-        <td>Utworzono</td>
-        <td>Tweet</td>
-        <td>Użytkownik</td>
+        <th>Utworzono</th>
+        <th>Tweet</th>
+        <th>Użytkownik</th>
     </tr>
     <c:forEach items="${allTweets}" var="myTweet">
         <tr>

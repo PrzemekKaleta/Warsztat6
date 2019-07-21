@@ -7,21 +7,24 @@ import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @Entity
-public class Tweet {
+public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long Id;
 
     @ManyToOne
     private User user;
 
-    @NotBlank
-    @Size(max = 140)
-    @Column(nullable = false)
-    private String text;
+    @ManyToOne
+    private Tweet tweet;
 
     private LocalDateTime created;
+
+    @NotBlank
+    @Size(max = 60)
+    @Column(nullable = false)
+    private String text;
 
     @PrePersist
     public void prePersist(){
@@ -29,11 +32,11 @@ public class Tweet {
     }
 
     public Long getId() {
-        return id;
+        return Id;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        Id = id;
     }
 
     public User getUser() {
@@ -44,12 +47,12 @@ public class Tweet {
         this.user = user;
     }
 
-    public String getText() {
-        return text;
+    public Tweet getTweet() {
+        return tweet;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setTweet(Tweet tweet) {
+        this.tweet = tweet;
     }
 
     public LocalDateTime getCreated() {
@@ -58,5 +61,13 @@ public class Tweet {
 
     public void setCreated(LocalDateTime created) {
         this.created = created;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 }

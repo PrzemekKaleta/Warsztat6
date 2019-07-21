@@ -41,8 +41,9 @@ public class HomeController {
     }
 
     @PostMapping("/")
-    public String saveTweet(@Valid Tweet tweet, BindingResult result){
+    public String saveTweet(Model model, @Valid Tweet tweet, BindingResult result){
         if(result.hasErrors()){
+            model.addAttribute("allTweets",tweetRepository.findByOrderByIdDesc());
             return "index";
         }
         tweet.setUser(userRepository.findUserByEmail(userSession.getEmail()));
